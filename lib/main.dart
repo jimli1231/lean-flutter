@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'vrm_viewer_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -68,6 +69,19 @@ class _TodoListPageState extends State<TodoListPage> {
         title: const Text('我的待办事项'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         elevation: 2,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.threed_rotation),
+            tooltip: 'VRM 演示',
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => const VRMViewerPage(),
+                ),
+              );
+            },
+          ),
+        ],
       ),
       body: Column(
         children: [

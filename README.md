@@ -101,6 +101,16 @@ my_flutter_app/
 - 自适应亮度
 - 现代化的UI组件
 
+## VRM集成说明
+
+项目已集成 `flutter_unity_widget`，可以在应用中展示VRM模型。点击应用栏右侧的
+"VRM 演示"图标即可打开示例页面。要正确显示VRM模型，需要：
+
+1. 在Unity中创建支持VRM的场景并导出到Flutter项目中。
+2. 在`VRMViewerPage`中加载对应的Unity场景。
+
+Unity项目的配置和VRM模型文件请根据实际需求添加。
+
 ## 未来改进
 
 - [ ] 数据持久化存储
