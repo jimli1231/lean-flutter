@@ -1,130 +1,229 @@
-# 我的待办事项 - Flutter应用
+# VRM Viewer - 高性能VRM模型查看器
 
-这是一个使用Flutter开发的现代化待办事项应用，具有简洁美观的用户界面和完整的功能。
+一个基于Flutter开发的高性能VRM（Virtual Reality Model）模型查看器应用，支持3D模型的加载、查看和管理。
 
-## 功能特性
+## 🚀 功能特性
 
-- ✅ 添加新的待办事项
-- ✅ 标记任务为已完成/未完成
-- ✅ 删除不需要的任务
-- ✅ 实时统计任务总数和完成数量
-- ✅ 现代化的Material Design 3界面
-- ✅ 响应式设计，适配不同屏幕尺寸
-- ✅ 空状态提示，提升用户体验
+### 核心功能
+- **VRM模型加载**: 支持从URL和本地文件加载VRM模型
+- **3D模型查看**: 高性能的3D模型渲染和交互
+- **模型管理**: 本地模型库管理，支持增删改查
+- **性能优化**: 使用Provider进行状态管理，确保流畅的用户体验
 
-## 技术特点
+### 技术特性
+- **跨平台支持**: 支持Web、iOS、Android、macOS、Linux、Windows
+- **高性能渲染**: 优化的3D渲染引擎
+- **响应式设计**: 适配不同屏幕尺寸
+- **现代化UI**: Material Design 3设计语言
 
-- 使用Flutter 3.x和Dart语言开发
-- 采用Material Design 3设计规范
-- 状态管理使用Flutter内置的StatefulWidget
-- 响应式UI设计
-- 中文界面，本地化友好
+## 📱 界面预览
 
-## 运行应用
+### 主界面
+- **查看器标签页**: 3D模型展示区域
+- **模型库标签页**: 本地模型管理
+- **统计信息栏**: 显示模型数量和缓存大小
+- **快速操作**: 一键加载模型
 
-### 前提条件
+### 功能区域
+- **VRM查看器**: 支持旋转、缩放、平移等交互
+- **模型信息**: 显示顶点数、材质数、文件大小等统计
+- **控制按钮**: 全屏、截图、分享等功能
 
-确保您的系统已安装：
-- Flutter SDK (版本 3.0.0 或更高)
-- Dart SDK
-- Android Studio 或 VS Code
-- iOS开发需要Xcode (仅macOS)
+## 🛠️ 技术架构
 
-### 运行步骤
-
-1. 进入项目目录：
-   ```bash
-   cd my_flutter_app
-   ```
-
-2. 获取依赖包：
-   ```bash
-   flutter pub get
-   ```
-
-3. 运行应用：
-   ```bash
-   flutter run
-   ```
-
-### 支持的平台
-
-- ✅ Android
-- ✅ iOS
-- ✅ Web
-- ✅ macOS
-- ✅ Windows
-- ✅ Linux
-
-## 项目结构
-
-```
-my_flutter_app/
-├── lib/
-│   └── main.dart          # 主应用文件
-├── android/               # Android平台配置
-├── ios/                   # iOS平台配置
-├── web/                   # Web平台配置
-├── windows/               # Windows平台配置
-├── macos/                 # macOS平台配置
-├── linux/                 # Linux平台配置
-├── test/                  # 测试文件
-├── pubspec.yaml           # 项目配置和依赖
-└── README.md              # 项目说明文档
+### 依赖包
+```yaml
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # 状态管理
+  provider: ^6.0.5
+  
+  # 网络和文件
+  http: ^0.13.6
+  path_provider: ^2.1.1
+  
+  # UI组件
+  cached_network_image: ^3.2.3
+  shimmer: ^3.0.0
+  
+  # 工具类
+  json_annotation: ^4.8.1
+  uuid: ^3.0.7
 ```
 
-## 使用说明
+### 项目结构
+```
+lib/
+├── models/          # 数据模型
+│   └── vrm_model.dart
+├── services/        # 业务服务
+│   └── vrm_service.dart
+├── providers/       # 状态管理
+│   └── vrm_provider.dart
+├── widgets/         # UI组件
+│   └── vrm_viewer.dart
+├── screens/         # 页面
+│   └── home_screen.dart
+├── utils/           # 工具类
+└── main.dart        # 应用入口
+```
 
-1. **添加任务**：在顶部输入框中输入任务内容，然后点击"添加"按钮或按回车键
-2. **完成任务**：点击任务前的复选框来标记任务为已完成
-3. **删除任务**：点击任务右侧的删除图标来移除任务
-4. **查看统计**：底部会显示总任务数和已完成任务数
+## 🚀 快速开始
 
-## 开发说明
+### 环境要求
+- Flutter SDK: >=2.19.6
+- Dart SDK: >=2.19.6
+- 支持平台: Web, iOS, Android, macOS, Linux, Windows
 
-### 主要组件
+### 安装步骤
 
-- `MyApp`: 应用根组件，配置主题和路由
-- `TodoListPage`: 主页面，包含待办事项列表和操作界面
-- `TodoItem`: 数据模型，表示单个待办事项
+1. **克隆项目**
+```bash
+git clone <repository-url>
+cd my_flutter_app
+```
+
+2. **安装依赖**
+```bash
+flutter pub get
+```
+
+3. **生成代码**
+```bash
+flutter packages pub run build_runner build
+```
+
+4. **运行应用**
+```bash
+# Web平台（推荐）
+flutter run -d chrome
+
+# 其他平台
+flutter run -d macos    # macOS
+flutter run -d ios      # iOS模拟器
+flutter run -d android  # Android设备
+```
+
+## 📖 使用指南
+
+### 加载VRM模型
+
+1. **从URL加载**
+   - 点击"从URL加载"按钮
+   - 输入VRM文件的URL地址
+   - 点击"加载"按钮
+
+2. **从文件加载**
+   - 点击"从文件加载"按钮
+   - 选择本地VRM文件
+   - 文件将自动加载并保存到本地
+
+### 管理模型库
+
+1. **查看模型**
+   - 切换到"模型库"标签页
+   - 点击模型卡片查看详情
+   - 选择"查看"进入3D查看器
+
+2. **删除模型**
+   - 在模型库中点击模型卡片的菜单按钮
+   - 选择"删除"选项
+   - 确认删除操作
+
+### 3D交互
+
+- **旋转**: 拖拽模型进行旋转
+- **缩放**: 双指缩放或滚轮缩放
+- **平移**: 拖拽背景进行平移
+- **重置**: 点击重置按钮恢复默认视角
+
+## 🔧 开发说明
 
 ### 状态管理
+使用Provider模式进行状态管理：
+- `VRMServiceProvider`: 管理VRM模型数据和状态
+- `LoadingState`: 加载状态枚举
+- 响应式UI更新
 
-应用使用Flutter的StatefulWidget进行状态管理，主要状态包括：
-- `_todos`: 待办事项列表
-- `_textController`: 输入框控制器
+### 数据模型
+```dart
+class VRMModel {
+  final String id;
+  final String name;
+  final String description;
+  final VRMMetadata metadata;
+  final VRMStats stats;
+  // ...
+}
+```
 
-### 主题配置
+### 服务层
+- `VRMService`: 处理VRM文件的加载、解析、存储
+- 支持本地缓存和网络加载
+- 错误处理和状态管理
 
-应用使用Material Design 3主题，支持：
-- 动态颜色方案
-- 自适应亮度
-- 现代化的UI组件
+## 🎯 性能优化
 
-## VRM集成说明
+### 渲染优化
+- 使用高效的3D渲染引擎
+- 模型LOD（细节层次）管理
+- 纹理压缩和缓存
 
-项目已集成 `flutter_unity_widget`，可以在应用中展示VRM模型。点击应用栏右侧的
-"VRM 演示"图标即可打开示例页面。要正确显示VRM模型，需要：
+### 内存管理
+- 智能缓存策略
+- 内存使用监控
+- 自动垃圾回收
 
-1. 在Unity中创建支持VRM的场景并导出到Flutter项目中。
-2. 在`VRMViewerPage`中加载对应的Unity场景。
+### 网络优化
+- 断点续传支持
+- 压缩传输
+- 缓存策略
 
-Unity项目的配置和VRM模型文件请根据实际需求添加。
+## 🔮 未来计划
 
-## 未来改进
+### 功能增强
+- [ ] VRM 2.0规范支持
+- [ ] 动画播放功能
+- [ ] 材质编辑功能
+- [ ] 导出功能
 
-- [ ] 数据持久化存储
-- [ ] 任务分类和标签
-- [ ] 任务优先级设置
-- [ ] 截止日期提醒
-- [ ] 深色模式支持
+### 性能提升
+- [ ] WebGL 2.0支持
+- [ ] 多线程渲染
+- [ ] GPU加速计算
+
+### 用户体验
+- [ ] 手势识别优化
+- [ ] 自定义主题
 - [ ] 多语言支持
-- [ ] 云同步功能
 
-## 贡献
+## 🤝 贡献指南
 
-欢迎提交Issue和Pull Request来改进这个项目！
+欢迎提交Issue和Pull Request！
 
-## 许可证
+### 开发环境设置
+1. Fork项目
+2. 创建功能分支
+3. 提交代码
+4. 创建Pull Request
 
-MIT License
+### 代码规范
+- 遵循Dart代码规范
+- 添加适当的注释
+- 编写单元测试
+
+## 📄 许可证
+
+本项目基于MIT许可证开源。
+
+## 🙏 致谢
+
+- [UniVRM](https://github.com/vrm-c/UniVRM) - VRM格式实现
+- [Flutter](https://flutter.dev) - 跨平台开发框架
+- [Provider](https://pub.dev/packages/provider) - 状态管理
+
+---
+
+**VRM Viewer** - 让3D模型查看更简单、更高效！ 🎨✨
